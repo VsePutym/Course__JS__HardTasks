@@ -1,40 +1,72 @@
 'use strict';
-/*
-1) Создать переменную num со значением 266219 (тип данных число)
-2) Вывести в консоль произведение (умножение) цифр этого числа
-Например: число 123, при помощи javaScript получить каждое цифру ( 1, 2, 3 ) и перемножить их.
-Правильно использовать цикл или методы перебора.
-3) Полученный результат возвести в степень 3, используя только 1 оператор (Math.pow не подходит)
-4) Вывести на экран первые 2 цифры полученного числа */
+
+let rus = 'ru';
+let eng = 'en';
+let result = prompt('enter "ru" or "en" to select language');
 
 
-//! Version 0.1 =====
+//? Task 1
 
-let num = 266219;
+let lang = result;
+function chooseLanguage(){
+    if(lang === rus){
+        return('понидельник, вторник, среда, четверг, пятница');
+    }
+    else if(lang === eng){
+        return('Monday, Tuesday, Wednesday, Thursday, Friday');
+    }
+    else{
+        ('incorrect data entered');
+    }
+}
+console.log(chooseLanguage());
 
-let newNumbers = num.toString().split('');
+//? Task 2
 
-let reducer = newNumbers.reduce((item, item2) => item * item2, 1); 
+// let lang = result;
+// switch(lang){
+//     case 'ru':
+//         alert('понидельник, вторник, среда, четверг, пятница');
+//     break;  
+//     case 'en':
+//         alert('Monday, Tuesday, Wednesday, Thursday, Friday');
+//     break;
+// }
+// console.log(lang);
 
-reducer **= 3;
+//* Task 3
 
-let sliceReduce = String(reducer).slice(0, 2);
+// let array = [];
+// array ['ru'] = ['понидельник', 'вторник', 'среда', 'четверг', 'пятница'];
+// array ['en'] = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
 
-console.log(sliceReduce);
+// console.log(array[result]);
+
+//? Task 4
+
+// let namePerson = prompt('Enter your name on rus');
+// let resultName = ( namePerson === 'Артем') ? 'директор' :
+// ( namePerson === 'Максим') ?  'преподователь':
+// 'студент' ;
+
+// console.log(resultName);
 
 
-// //? Version 0.2 =======
+/* Task 1 version 2
+let random = Math.floor(Math.random() * 2);
+let lang = (random === 0) ? "ru" : "en";
+let daysRu = ["понедельник", "вторник", "среда", "четверг", "пятница", "суббота", "воскресенье", ];
+let daysEn = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday", ];
 
-/* let num = 266219;
-const strNum = String(num);
-let result = 1;
-
-for( let i = 0; i < strNum.length; i++){
-    result = result * strNum[i];
+function output(array) {
+    for (let i = 0; i < array.length; i++) {
+        console.log(array[i]);
+    }
 }
 
-result **= 3;
-console.log(( String(result).slice(0, 2)));
+if ( lang === "ru" ) {
+    output(daysRu);
+    } else {
+    output(daysEn);
+    }
 */
-
-
