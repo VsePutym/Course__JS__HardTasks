@@ -1,17 +1,20 @@
 'use strict';
 
-let isNumber = function (n) {
-    return !isNaN(parseFloat(n)) && isFinite(n);
-};
 
-let getString = function (arg1) {
-    if (!isNumber(arg1)) {
-        console.log(typeof arg1);
-        console.log(arg1.slice(0, 30) + '...');
-    }else{
-        console.log('it is not a string');
+
+
+let arr = [23, 27, 755, 104, 47, 78, 377]; 
+
+console.log(arr.filter(num => ['4','2'].includes(num.toString()[0])));
+
+
+
+one:
+for (let i = 2; i <= 100; i++) {
+    for (let j = 2; j < i; j++) {
+        if (i % j === 0){            
+            continue one;
+        }
     }
-    return;
-};
-getString('dwaddddddddddddwawwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwdw');
-
+    console.log('делитель числа : ' + i + ' 1 и ' + i);
+}
