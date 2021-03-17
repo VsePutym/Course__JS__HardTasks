@@ -1,49 +1,76 @@
-'use strict';
+document.addEventListener('DOMContentLoaded', () => {
+    'use strict';
 
-let week = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
+    const days = ["Воскресенье", "Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота"];
+    const allMonth = ["Января", "Февраля", "Марта", "Апреля", "Мая", "Июня", "Июля", "Августа", "Сентября", "Октября", "Ноября", "Декабря", ];
 
-let thisDay = new Date();
+    const addNewElem = () => {
+        const elem = document.createElement('div');
+        elem.classList.add('date');
+        document.body.append(elem);
+        return elem;
+    }
 
-const days = document.querySelector('.days');
-const createUl = document.createElement('ul');
-const monday = document.createElement('li');
-const tuesday = document.createElement('li');
-const wednesday = document.createElement('li');
-const thursday = document.createElement('li');
-const friday = document.createElement('li');
-const saturday = document.createElement('li');
-const sunday = document.createElement('li');
-const thisD = document.createElement('li');
+    const dateA = addNewElem();
+    const dateB = addNewElem();
 
-createUl.classList.add('ul__class');
-monday.classList.add('monday');
-tuesday.classList.add('tuesday');
-wednesday.classList.add('wednesday');
-thursday.classList.add('thursday');
-friday.classList.add('friday');
-saturday.classList.add('saturday');
-sunday.classList.add('sunday');
-thisD.classList.add('thisDay');
+    dateA.style.cssText = `
+    font-size: 40px;
+    text-align: center;
+    color: #902bcf;
+    font-family: cursive;
+    font-style: italic;
+    margin-bottom: 50px`;
 
-days.insertAdjacentElement('beforeend', createUl);
-createUl.insertAdjacentElement('afterbegin', friday);
-createUl.insertAdjacentElement('afterbegin', thursday);
-createUl.insertAdjacentElement('afterbegin', wednesday);
-createUl.insertAdjacentElement('afterbegin', tuesday);
-createUl.insertAdjacentElement('afterbegin', monday);
-createUl.insertAdjacentElement('beforeend', saturday);
-createUl.insertAdjacentElement('beforeend', sunday);
-createUl.insertAdjacentElement('beforeend', thisD);
+    
+    dateB.style.cssText = `
+    font-size: 40px;
+    text-align: center;
+    color: #db0f4d;
+    font-family: cursive;
+    font-style: italic;
+    margin-bottom: 50px`;
 
-saturday.style.fontStyle = 'italic';
-sunday.style.fontStyle = 'italic';
-thisD.style.fontWeight = 'bold';
 
-monday.innerHTML = week[0];
-tuesday.innerHTML = week[1];
-wednesday.innerHTML = week[2];
-thursday.innerHTML = week[3];
-friday.innerHTML = week[4];
-saturday.innerHTML = week[5];
-sunday.innerHTML = week[6];
-thisD.innerHTML = thisDay;
+    const getNewAllTime = () => {
+        const date = new Date();
+        const month = allMonth[date.getMonth()];
+        let numberMonth = date.getMonth();
+        const dayWeek = days[date.getDay()];
+        let day = date.getUTCDate();
+        let hours = date.getHours();
+        let minutes = date.getMinutes();
+        let second = date.getSeconds();
+        const year = date.getUTCFullYear();
+        let min = '';
+
+        if (hours >= 5 && hours < 21) {
+            min = 'часов';
+        } else if (hours === 21 || hours === 1) {
+            min = 'час';
+        } else if (hours >= 2 && hours <= 4 || hours >= 22 && hours <= 24) {
+            min = 'часа';
+        }
+
+        if(day < 10){
+            day = `0${day}`;
+        }if(numberMonth < 10){
+            numberMonth = `0${numberMonth}`;
+        }if(hours < 10){
+            hours = `0${hours}`;
+        }if(minutes < 10){
+            minutes = `0${minutes}`;
+        }if(second < 10){
+            second = `0${second}`;
+        }
+
+        dateA.innerHTML = `сегодня ${dayWeek} ${day} ${month} ${year} года ${hours} ${min} ${minutes} минуты ${second} секунды`;
+        dateB.innerHTML = ` ${day}.${numberMonth}.${year} - ${hours}:${minutes}:${second}`;
+    }
+
+    setInterval(() => {
+        getNewAllTime();
+    }, 1000);
+
+
+});
